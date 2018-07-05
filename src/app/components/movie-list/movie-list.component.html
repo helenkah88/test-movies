@@ -1,0 +1,8 @@
+<div>
+  <h3>Movies</h3>
+  <ul class="list-group">
+    <li *ngFor="let movie of movies; index as i" class="list-group-item">
+      <app-movie-item [movie]="movie" [idx]="i" (remove)="removeMovie($event)"></app-movie-item>
+    </li>
+  </ul>
+</div>
