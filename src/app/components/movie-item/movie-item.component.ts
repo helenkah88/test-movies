@@ -11,7 +11,7 @@ export class MovieItemComponent implements OnInit {
 
   @Input() movie: Movie;
   @Input() idx: number;
-  @Output() remove: EventEmitter<number> = new EventEmitter();
+  @Output() remove: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -19,7 +19,7 @@ export class MovieItemComponent implements OnInit {
   }
 
   removeMovie() {
-    this.remove.emit(this.idx);
+    this.remove.emit({idx: this.idx, data: this.movie});
   }
 
 }
