@@ -1,13 +1,14 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, Input, OnChanges } from '@angular/core';
 
 import { Movie } from '../../models/movie';
 
 @Component({
   selector: 'app-total-rating',
   template: `
-    <p>{{ total.toFixed(2) }}</p>
+    <p>Total rating: <strong>{{ total.toFixed(2) }}</strong></p>
   `,
-  styles: []
+  styles: [],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TotalRatingComponent implements OnInit, OnChanges {
 

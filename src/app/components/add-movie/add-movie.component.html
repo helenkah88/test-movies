@@ -1,0 +1,53 @@
+<form #myform="ngForm">
+	<div class="d-flex">
+  <div class="form-group w-75 mb-2 mr-3">
+  	<input type="text" name="title" [(ngModel)]="movie.title" #title="ngModel" required="" placeholder="enter title" class="form-control">
+  </div>
+  <button type="submit" (click)="addMovie(myform)" class="btn btn-primary mb-2">Add</button>
+  </div>
+  <div class="alert alert-danger w-75" *ngIf="title.invalid && (title.dirty || title.touched)">Name is required.</div>
+</form>
+<div class="d-flex">
+	<div class="flex-grow-1">
+		Form:
+		<div>valid {{ myform.valid }}</div>
+		<div>touched {{ myform.touched }}</div>
+		<div>dirty {{ myform.dirty }}</div>
+		<div>value {{ myform.value | json }}</div>	
+		<!-- <div>errors {{ myform.errors? | json }}</div> -->
+	</div>
+	<div class="flex-grow-1">
+		Input:
+		<div>valid {{ title.valid }}</div>	
+		<div>touched {{ title.touched }}</div>	
+		<div>dirty {{ title.dirty }}</div>	
+		<div>value {{ title.value }}</div>	
+		<div>errors {{ title.errors | json }}</div>	
+	</div>
+</div>
+<!-- 
+<form [formGroup]="myform" (ngSubmit)="addMovie(myform)">
+	<div class="d-flex">
+		<input type="text" formControlName="title" placeholder="enter title">
+		<button type="submit" [disabled]="myform.invalid">add</button>
+	</div>
+  <div class="alert alert-danger w-75" *ngIf="myform.controls.title.errors?.required">Name is required.</div>
+</form>
+<div class="d-flex">
+	<div class="flex-grow-1">
+		Form:
+		<div>valid {{ myform.valid }}</div>
+		<div>touched {{ myform.touched }}</div>
+		<div>dirty {{ myform.dirty }}</div>
+		<div>value {{ myform.value | json }}</div>	
+		<div>errors {{ myform.errors | json }}</div>
+	</div>
+	<div class="flex-grow-1">
+		Input:
+		<div>valid {{ myform.controls.title.valid }}</div>	
+		<div>touched {{ myform.controls.title.touched }}</div>	
+		<div>dirty {{ myform.controls.title.dirty }}</div>	
+		<div>value {{ myform.controls.title.value }}</div>	
+		<div>errors {{ myform.controls.title.errors | json }}</div>	
+	</div>
+</div> -->

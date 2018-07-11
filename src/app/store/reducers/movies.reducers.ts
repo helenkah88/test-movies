@@ -5,15 +5,12 @@ import { MoviesState } from '../models/movies';
 import { Movie } from '../../models/movie';
 
 export const initialState: MoviesState = {
-	movies: []
+	movies: [],
+	rating: 0
 }
 
 export function moviesReducer(state = initialState, action: actions.MoviesAction) {
 	switch (action.type) {
-		case actions.GET_MOVIES:
-			return {
-				...state
-			}
 		case actions.GET_MOVIES_SUCCESS:
 			return {
 				...state,
@@ -29,6 +26,14 @@ export function moviesReducer(state = initialState, action: actions.MoviesAction
 				...state,
 				movies
 			}
+		case actions.SET_RATING_SUCCESS: {
+			let idx = state.movies.indexOf(action.payload);
+			state.movies.splice(idx, 1, action.payload);
+			return {
+				...state,
+				movies: state.movies
+			}
+		}			
 		case actions.DELETE_MOVIE_SUCCESS:
 			return {
 				...state,
@@ -42,4 +47,8 @@ export function moviesReducer(state = initialState, action: actions.MoviesAction
 
 export const getMovies = (state: MoviesState) => {
 	return state.movies;
+}
+
+export const getRating = (state: MoviesState) => {
+	return state.rating;
 }

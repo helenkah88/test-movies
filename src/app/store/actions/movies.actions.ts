@@ -14,6 +14,10 @@ export const DELETE_MOVIE = '[Movies] Delete Movie';
 export const DELETE_MOVIE_SUCCESS = '[Movies] Delete Movie Success';
 export const DELETE_MOVIE_FAIL = '[Movies] Delete Movie Fail';
 
+export const SET_RATING = '[Movies] Set Rating';
+export const SET_RATING_SUCCESS = '[Movies] Set Rating Success';
+export const SET_RATING_FAIL = '[Movies] Set Rating Fail';
+
 export class GetMovies implements Action {
 	readonly type = GET_MOVIES;
 }
@@ -55,6 +59,21 @@ export class DeleteMovieFail implements Action {
 	constructor(payload: any) {}
 }
 
+export class SetRating implements Action {
+	readonly type = SET_RATING;
+	constructor(public payload: any) {}
+}
+
+export class SetRatingSuccess implements Action {
+	readonly type = SET_RATING_SUCCESS;
+	constructor(public payload: any) {}
+}
+
+export class SetRatingFail implements Action {
+	readonly type = SET_RATING_FAIL;
+	constructor(payload: any) {}
+}
+
 export type MoviesAction = GetMovies
  | GetMoviesSuccess
  | GetMoviesFail
@@ -64,3 +83,6 @@ export type MoviesAction = GetMovies
  | DeleteMovie
  | DeleteMovieSuccess
  | DeleteMovieFail
+ | SetRating
+ | SetRatingSuccess
+ | SetRatingFail

@@ -1,4 +1,8 @@
 <div class="d-flex align-items-center">
   <div class="mr-auto">{{ movie.title }}</div>
+  <div class="mx-3">
+    <div class="ml-2">rating: {{ movie.rating }}</div>
+    <star-rating [starType]="'svg'" [rating]="movie.rating" (starClickChange)="setRating($event)"></star-rating>
+  </div>
   <a href="#" class="btn btn-danger" (click)="removeMovie()">x</a>
 </div>

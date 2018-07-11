@@ -27,14 +27,22 @@ export class MovieListComponent implements OnInit {
     this.store.dispatch({type: actions.GET_MOVIES});
   }
 
-  addMovie() {
-    this.movie.rating = 3;
-    this.store.dispatch({type: actions.SAVE_MOVIE, payload: this.movie});
-    this.movie = new Movie();
+  trackByFn(index, item) {
+    return index;
+  }
+
+  addMovie({form, movie}) {
+    movie.rating = 3;
+    this.store.dispatch({type: actions.SAVE_MOVIE, payload: movie});
+    setTimeout(() => form.reset(), 0);
   }
 
   removeMovie(evt) {
     this.store.dispatch({type: actions.DELETE_MOVIE, payload: { idx: evt.idx, data: evt.data } });
+  }
+
+  setRating(evt) {
+    this.store.dispatch({type: actions.SET_RATING, payload: { rating: evt.rating, data: evt.data}})
   }
 
 }

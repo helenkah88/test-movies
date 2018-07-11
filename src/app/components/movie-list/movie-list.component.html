@@ -1,18 +1,12 @@
 <div>
   <h3>Movies</h3>
-  <div>{{ movies$ | async | json }}</div>
   <ul class="list-group">
-    <li *ngFor="let movie of (movies$ | async); index as i" class="list-group-item">
-      <app-movie-item [movie]="movie" [idx]="i" (remove)="removeMovie($event)"></app-movie-item>
+    <li *ngFor="let movie of (movies$ | async); index as i; trackBy: trackByFn" class="list-group-item">
+      <app-movie-item [movie]="movie" [idx]="i" (rate)="setRating($event)" (remove)="removeMovie($event)"></app-movie-item>
     </li>
   </ul>
   <div class="my-3">
-    <form class="d-flex" #form="ngForm">
-      <div class="form-group w-75 mb-2 mr-3">
-        <input type="text" class="form-control" name="title" [(ngModel)]="movie.title" placeholder="Enter movie title">
-      </div>
-      <button type="submit" (click)="addMovie()" class="btn btn-primary mb-2">Add</button>
-    </form>
+    <app-add-movie [movie]="movie" (add)="addMovie($event)"></app-add-movie>
   </div>
   <app-total-rating [movies]="movies$ | async"></app-total-rating>
 </div>

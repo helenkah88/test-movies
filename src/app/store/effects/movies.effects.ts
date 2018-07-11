@@ -8,15 +8,15 @@ import * as actions from '../actions/movies.actions';
 
 let moviesList = [
 	{
-		title: 'tirp',
+		title: 'movie 1',
 		rating: 4
 	},
 	{
-		title: 'goe',
+		title: 'movie 2',
 		rating: 5
 	},
 	{
-		title: 'ohr ghruehj rpo hjr',
+		title: 'movie 3',
 		rating: 4
 	}
 ]
@@ -38,11 +38,28 @@ export class MoviesEffects {
 	.pipe(
 		map((action: actions.SaveMovie) => action.payload),
 		switchMap(payload => {
+			console.log(payload);
 			let newItem = payload;
 			return of(newItem)
 			.pipe(
 				map(response => {
 					return new actions.SaveMovieSuccess(response);
+				})
+			)
+		})
+	)
+
+	@Effect()
+	newRating$ = this.actions$.ofType(actions.SET_RATING)
+	.pipe(
+		map((action: actions.SetRating) => action.payload),
+		switchMap(payload => {
+			let newRating = payload.data;
+			newRating.rating = payload.rating;
+			return of(newRating)
+			.pipe(
+				map(response => {
+					return new actions.SetRatingSuccess(response);
 				})
 			)
 		})
